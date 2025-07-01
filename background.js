@@ -160,6 +160,9 @@ async function getMCPAdapter(settings) {
     
     // Ensure adapter is initialized
     if (!mcpAdapter.authToken) {
+        if (!settings || !settings.daisysEmail || !settings.daisysPassword) {
+            throw new Error('DAISYS credentials not provided');
+        }
         await mcpAdapter.initialize(settings.daisysEmail, settings.daisysPassword);
     }
     
@@ -980,6 +983,15 @@ async function handleSpeechGeneration(text, settings) {
 
 // Test DAISYS API connection and fetch voices using MCP adapter
 async function testDaisysAPIWithMCP(settings) {
+    console.log('[Background] Testing DAISYS API with settings:', settings);
+    
+    if (!settings) {
+        throw new Error('No settings provided to testDaisysAPIWithMCP');
+    }
+    
+    if (!settings.daisysEmail || !settings.daisysPassword) {
+        throw new Error('DAISYS email or password not provided');
+    }
     
     try {
         // Get MCP adapter
