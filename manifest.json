@@ -1,0 +1,59 @@
+{
+  "manifest_version": 3,
+  "name": "Page Summarizer - Accessibility Helper",
+  "version": "1.0.0",
+  "description": "Get instant spoken summaries of any webpage for better accessibility. Understand content quickly with AI-powered summaries.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "notifications"
+  ],
+  "commands": {
+    "summarize-page": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Summarize the current page with audio"
+    },
+    "explain-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "mac": "Command+Shift+E"
+      },
+      "description": "Explain selected text with audio"
+    }
+  },
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "websocket_connector.js",
+        "websocket_stream.js",
+        "chunk_audio_player.js",
+        "daisys_audio_player.js",
+        "audio_utils.js",
+        "mcp-adapter-bundle.js",
+        "daisys_mcp_adapter.js",
+        "ssml_processor.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

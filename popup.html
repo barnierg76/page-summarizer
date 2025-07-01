@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Summarizer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container minimal">
+        <h1>🔊 Page Summarizer</h1>
+        
+        <!-- Settings Tab -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="summary">Summarize</button>
+            <button class="tab-button" data-tab="settings">Settings</button>
+        </div>
+
+        <!-- Summary Tab Content -->
+        <div id="summary-tab" class="tab-content active">
+            <div class="status" id="status">Ready to summarize</div>
+            
+            <button id="summarize-btn" class="primary-btn">
+                <span class="btn-text">Summarize This Page 🔊</span>
+                <div class="spinner"></div>
+            </button>
+
+            <div class="audio-controls">
+                <button id="stop-btn" class="control-btn hidden">
+                    <span>⏹ Stop</span>
+                </button>
+            </div>
+
+            <div class="shortcuts-info">
+                <p><strong>Keyboard Shortcuts:</strong></p>
+                <p>📄 <kbd id="main-summarize-shortcut">Ctrl+Shift+S</kbd> - Summarize page</p>
+                <p>💬 <kbd id="main-explain-shortcut">Ctrl+Shift+E</kbd> - Explain selected text</p>
+            </div>
+
+            <audio id="audio-player" class="hidden"></audio>
+            
+            <div id="error-message" class="error hidden"></div>
+        </div>
+
+        <!-- Settings Tab Content -->
+        <div id="settings-tab" class="tab-content">
+            <form id="settings-form">
+                <div class="settings-section">
+                    <h3>Voice Settings</h3>
+                    <div class="form-group">
+                        <label for="daisys-email">DAISYS Email</label>
+                        <input type="email" id="daisys-email" placeholder="user@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="daisys-password">DAISYS Password</label>
+                        <input type="password" id="daisys-password" placeholder="Your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="daisys-voice">Voice</label>
+                        <select id="daisys-voice">
+                            <option value="">Loading voices...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="voice-generation">
+                        <h4>Create New Voice</h4>
+                        <div class="form-group">
+                            <label for="voice-gender">Voice Type</label>
+                            <select id="voice-gender">
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="nonbinary">Neutral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="voice-model">Voice Model</label>
+                            <select id="voice-model">
+                                <option value="">Loading models...</option>
+                            </select>
+                        </div>
+                        <button type="button" id="generate-voice-btn" class="secondary-btn">Generate Voice</button>
+                        <div id="voice-generation-status" class="status-message"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>AI Settings</h3>
+                    <div class="form-group">
+                        <label for="llm-provider">AI Provider</label>
+                        <select id="llm-provider">
+                            <option value="openai">OpenAI</option>
+                            <option value="anthropic">Anthropic Claude</option>
+                            <option value="xai">xAI Grok</option>
+                            <option value="custom">Custom API</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="llm-api-key">API Key</label>
+                        <input type="password" id="llm-api-key" placeholder="Your API key" required>
+                    </div>
+                    <div class="form-group" id="llm-endpoint-group" style="display: none;">
+                        <label for="llm-endpoint">API Endpoint</label>
+                        <input type="url" id="llm-endpoint" placeholder="https://api.example.com/v1/completions">
+                    </div>
+                    <div class="form-group">
+                        <label for="llm-model">Model</label>
+                        <select id="llm-model">
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                            <option value="gpt-4">GPT-4</option>
+                            <option value="claude-3-sonnet">Claude 3 Sonnet</option>
+                            <option value="claude-3-opus">Claude 3 Opus</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="output-language">Output Language</label>
+                        <select id="output-language">
+                            <option value="english">English</option>
+                            <option value="dutch">Dutch (Nederlands)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="enable-ssml">
+                            <input type="checkbox" id="enable-ssml" checked>
+                            Enable SSML Processing
+                        </label>
+                        <p class="settings-hint">Improves pronunciation of technical terms and adds natural pacing</p>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Save Settings</button>
+                    <div id="settings-status" class="status-message"></div>
+                </div>
+            </form>
+            
+            <div class="settings-section">
+                <h3>Keyboard Shortcuts</h3>
+                <p class="settings-info">
+                    Current shortcuts:
+                    <br>• Summarize page: <span id="summarize-shortcut" class="shortcut-display">Ctrl+Shift+S</span>
+                    <br>• Explain selection: <span id="explain-shortcut" class="shortcut-display">Ctrl+Shift+E</span>
+                </p>
+                <button type="button" id="open-shortcuts" class="secondary-btn">Customize Shortcuts</button>
+                <p class="settings-hint">Opens Chrome's shortcuts settings page</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

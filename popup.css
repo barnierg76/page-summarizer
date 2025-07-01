@@ -1,0 +1,322 @@
+body {
+    width: 380px;
+    min-height: 400px;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    padding: 20px;
+}
+
+.container.minimal {
+    padding: 16px;
+}
+
+h1 {
+    margin: 0 0 16px 0;
+    font-size: 20px;
+    color: #2c3e50;
+    text-align: center;
+    font-weight: 600;
+}
+
+h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+h4 {
+    margin: 15px 0 10px 0;
+    font-size: 14px;
+    color: #555;
+    font-weight: 600;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-button:hover {
+    color: #495057;
+}
+
+.tab-button.active {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Status */
+.status {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Buttons */
+.primary-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.primary-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+.primary-btn.loading .btn-text {
+    opacity: 0;
+}
+
+.primary-btn .spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.primary-btn.loading .spinner {
+    display: block;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.secondary-btn {
+    padding: 8px 16px;
+    background: #e9ecef;
+    color: #495057;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-btn:hover {
+    background: #dee2e6;
+}
+
+.control-btn {
+    padding: 8px 16px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+}
+
+.control-btn:hover {
+    background: #c82333;
+}
+
+/* Audio Controls */
+.audio-controls {
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* Shortcuts Info */
+.shortcuts-info {
+    margin-top: 20px;
+    padding: 12px;
+    background: #e7f3ff;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.shortcuts-info p {
+    margin: 4px 0;
+}
+
+.shortcuts-info kbd {
+    display: inline-block;
+    padding: 2px 6px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Settings sections */
+.settings-section {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.voice-generation {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Form actions */
+.form-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Status messages */
+.status-message {
+    margin-top: 12px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.status-message.success {
+    color: #28a745;
+}
+
+.status-message.error {
+    color: #dc3545;
+}
+
+/* Error message */
+.error {
+    padding: 12px;
+    background-color: #fee;
+    color: #c33;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Help text */
+.help-text {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Keyboard shortcuts section */
+.settings-info {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #495057;
+    margin-bottom: 12px;
+}
+
+.shortcut-display {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    background: #f1f3f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.settings-hint {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 8px;
+    font-style: italic;
+}
